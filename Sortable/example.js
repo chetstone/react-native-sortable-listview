@@ -1,6 +1,9 @@
 let SortableListView = require('react-native-sortable-listview');
+
 let React = require('react');
 let {
+  Button,
+  Image,
   StyleSheet,
   Text,
   TouchableHighlight,
@@ -74,41 +77,69 @@ let list4 = {
   v16: 16,
 }
 
-let data = list3;
+let data = list4;
 
 let order = Object.keys(data); //Array of keys
 
 let RowComponent = React.createClass({
   render: function() {
     return <TouchableHighlight underlayColor={'#eee'} style={{padding: 25, backgroundColor: "#F8F8F8", borderBottomWidth:1, borderColor: '#eee'}} {...this.props.sortHandlers}>
-        <Text style={{fontSize: 20}}>{data === list3 || data === list4? this.props.data: this.props.data.text}</Text>
-      </TouchableHighlight>
+    <Text style={{fontSize: 20}}>{data === list3 || data === list4? this.props.data: this.props.data.text}</Text>
+    </TouchableHighlight>
   }
-})
+});
 
 let MyComponent = React.createClass({
+  getInitialState: function() {
+    return ({disable: false});
+  },
+  onPress: function() {
+    this.setState({disable: !this.state.disable});
+  },
   render: function() {
+    let t64 = <View style={[styles.header,{height: 64, backgroundColor: 'lightblue'}] /* fake nav bar */} >
+                  <Text style={styles.welcome} > Sortable </Text>
+               </View>;
+    let t121 = <View style={{height: 121, backgroundColor: 'lightblue'} /* fake nav bar */} >
+                  <Text style={styles.welcome} > Sortable </Text>
+               </View>;
+    let img =  <Image source={require('./Stupa.png')} />    ;
+    let t32 =  <View style={{height: 32, backgroundColor: 'lightblue'} /* fake nav bar */} >
+                   <Text style={styles.welcome} > Sortable </Text>
+               </View>;
+
+    let nil = <View/>;
+    let button = <Button
+                    onPress={this.onPress}
+                    title={`${this.state.disable? "Enable" : "Disable"} Sorting`}
+                    color="#841584"
+                  />;
+    let header = button;
+
     return (
       <View style={styles.container}>
-         <View style={{height: 64, backgroundColor: 'lightblue'} /* fake nav bar */} >
-           <Text style={styles.welcome} > Sortable </Text>
-         </View>
-      <SortableListView
-          style={{flex: 1, marginBottom: 0}}
-          data={data}
-          order={order}
-          onRowMoved={e => {
-            order.splice(e.to, 0, order.splice(e.from, 1)[0]);
-            this.forceUpdate();
-          }}
-          renderRow={row => <RowComponent data={row} />}
-      />
+          {header}
+          <SortableListView
+             style={{flex: 1, marginBottom: 0}}
+             data={data}
+             order={order}
+             disableSorting={this.state.disable}
+             onRowMoved={e => {
+               order.splice(e.to, 0, order.splice(e.from, 1)[0]);
+               this.forceUpdate();
+             }}
+             renderRow={row => <RowComponent data={row} />}
+          />
       </View> );
 
   }
 });
 
 const styles = StyleSheet.create({
+  header: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   container: {
     flex: 1,
     backgroundColor: '#F5FCFF',

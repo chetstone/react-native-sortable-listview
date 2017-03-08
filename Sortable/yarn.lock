@@ -2920,9 +2920,11 @@ react-deep-force-update@^1.0.0:
 "react-native-sortable-listview@file:../":
   version "0.1.1"
   dependencies:
+    react "^15.4.2"
+    react-native "^0.41.2"
     react-timer-mixin "^0.13.3"
 
-react-native@0.41.2:
+react-native@0.41.2, react-native@^0.41.2:
   version "0.41.2"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.41.2.tgz#c6f486b8450a9909e6fed2dfd2c2af946563bf4f"
   dependencies:
@@ -3027,7 +3029,7 @@ react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react@~15.4.0:
+react@^15.4.2, react@~15.4.0:
   version "15.4.2"
   resolved "https://registry.yarnpkg.com/react/-/react-15.4.2.tgz#41f7991b26185392ba9bae96c8889e7e018397ef"
   dependencies:
