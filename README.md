@@ -29,6 +29,7 @@ SortableListView passes through all the standard ListView properties to ListView
  - **`order`** _(Array)_  (optional) - Expects an array of keys to determine the current order of rows.
  - **`sortRowStyle`** _(Object)_ (optional) - Expects a `style` object, which is to be applied on the rows when they're being dragged.
  - **`disableSorting`** _(boolean) (optional) - When set to true, all sorting will be disabled, which will effectively make the SortableListView act like a normal ListView.
+ - **`limitScrolling`** _(boolean) (optional) - When set to true, scrolling will be disabled when a row is active (sorting). Default is `false`.
  - **`onMoveStart`** _(Function)_ (Optional) - Register a handler to be called when drag start.
  - **`onMoveEnd`** _(Function)_ (Optional) - Register a handler to be called when move is completed.
  - **`onRowActive`** _(Function)_ (Optional) - Register a handler to be called when row is activated, return a object contains three properties `rowData`, `touch` and `layout`. `rowData` is the data info of activated row, `layout` is the layout info of the activated row, `touch` is the `nativeEvent` of long press
